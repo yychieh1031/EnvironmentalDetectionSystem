@@ -1,0 +1,36 @@
+<html>
+<head><title>Humidity</title></head>
+<body>
+<font size = "24">
+<meta http-equiv="refresh" content="10" />
+<p align = "center" size = "12">
+<?php
+    $conn = mysql_connect(localhost, root, raspberry);
+    if(!$conn)
+    {
+      die("Can't connect!");
+      echo"<br>";
+    }
+    mysql_query("SET NAMES 'utf8'");
+    mysql_select_db("hum",$conn);
+    $result = mysql_query('select * from value');
+    while ($row = mysql_fetch_row($result))
+        $humidity = $row[1];
+        if($humidity < 250)
+        {
+          echo "Humidity = $humidity";
+          echo "<br>";
+        }else{
+          echo "<font color = 'RED'>!!!WARNING!!! Humidity too high!!!</font>"
+        }
+        echo "<br>";
+?>
+</font>
+<script language="JavaScript">
+//<!--hide script from old browsers
+document.write("Update time: " + document.lastModified + "")
+</script><br>
+<img src="image.jpg" width="600" height="600">
+</p>
+</body>
+</html>
